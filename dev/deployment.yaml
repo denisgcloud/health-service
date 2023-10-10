@@ -17,6 +17,7 @@ spec:
       containers:
         - name: app
           image: 'gikundi/health-app-service:1.2'
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
