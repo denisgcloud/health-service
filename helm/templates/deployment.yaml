@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deploy
+  name: health-app-deployment
   labels:
     app: app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: app
@@ -16,12 +16,13 @@ spec:
     spec:
       containers:
         - name: app
-          image: 'matesousa/app-helm:{{ .Values.env.APP_VERSION }}'
+          image: 'gikundi/health-app-service:1.2'
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
             - name: NAME
-              value: Matheus
+              value: Denis
           readinessProbe:
             httpGet:
               path: /health
