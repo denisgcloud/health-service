@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deploy
+  name: health-app-deployment
   labels:
     app: app
 spec:
@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: app
-          image: 'matesousa/app-helm:1.2'
+          image: 'gikundi/health-app-service:1.2'
           ports:
             - containerPort: 3000
           env:
             - name: NAME
-              value: Matheus
+              value: Denis
           readinessProbe:
             httpGet:
               path: /health
